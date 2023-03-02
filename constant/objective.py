@@ -16,16 +16,16 @@ def check_if_hit(tank, target):
     x_diff = abs(tank.x - target.x)
     y_diff = abs(tank.y - target.y)
     if x_diff + y_diff <= 2:
-        if tank.x == target.x and tank.y > target.y and tank.direction == 'S':
+        if tank.x == target.x and tank.y > target.y and tank.direction == 'DOWN':
             tank.points += 50
             return True
-        elif tank.x == target.x and tank.y < target.y and tank.direction == 'N':
+        elif tank.x == target.x and tank.y < target.y and tank.direction == 'UP':
             tank.points += 50
             return True
-        elif tank.y == target.y and tank.x > target.x and tank.direction == 'E':
+        elif tank.y == target.y and tank.x > target.x and tank.direction == 'RIGHT':
             tank.points += 50
             return True
-        elif tank.y == target.y and tank.x < target.x and tank.direction == 'W':
+        elif tank.y == target.y and tank.x < target.x and tank.direction == 'LEFT':
             tank.points += 50
             return True
     tank.points -= 50

@@ -20,7 +20,7 @@ class TankGame:
     def run(self):
         while self.tank.points > 0:
             draw_map(self.tank, self.target, 9)
-            print(f'Facing: {self.tank.direction}, Target:{self.target.x, self.target.y}')
+            print(f'Facing: {self.tank.direction}')
             print('Menu:\n1.Up | 2.Down | 3.Right | 4.Left |'
                   '\n 5. Shoot | 6. Info | 7. Top 5 | 8. Exit')
             try:

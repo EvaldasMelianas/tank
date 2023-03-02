@@ -2,8 +2,8 @@
 class Tank:
 
     def __init__(self):
-        self.x, self.y, self.direction = 5, 5, 'N'
-        self.shots = {'N': 0, 'E': 0, 'S': 0, 'W': 0}
+        self.x, self.y, self.direction = 5, 5, 'UP'
+        self.shots = {'UP': 0, 'RIGHT': 0, 'DOWN': 0, 'LEFT': 0}
         self.points = 100
 
     def check_x(self):
@@ -20,33 +20,33 @@ class Tank:
 
     def move_up(self):
         self.points -= 5
-        if self.direction == 'N':
+        if self.direction == 'UP':
             self.y += 1
             self.check_y()
-        self.direction = 'N'
+        self.direction = 'UP'
 
     def move_down(self):
         self.points -= 5
-        if self.direction == 'S':
+        if self.direction == 'DOWN':
             self.y -= 1
             self.check_y()
         else:
-            self.direction = 'S'
+            self.direction = 'DOWN'
 
     def move_left(self):
         self.points -= 5
-        if self.direction == 'W':
+        if self.direction == 'RIGHT':
             self.x += 1
             self.check_x()
         else:
-            self.direction = 'W'
+            self.direction = 'RIGHT'
 
     def move_right(self):
         self.points -= 5
-        if self.direction == 'E':
+        if self.direction == 'RIGHT':
             self.x -= 1
             self.check_y()
-        self.direction = 'E'
+        self.direction = 'LEFT'
 
     def shoot(self):
         self.shots[self.direction] += 1
