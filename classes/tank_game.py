@@ -1,29 +1,28 @@
-from functions.info import info, end_game_info
+from functions.info import info, save_score, top
 from functions.visual import draw_map
 from constant.objective import Target, check_if_hit
+from constant.tank import Tank
 
 
 class TankGame:
 
-    def __init__(self, tank):
-        self.tank = tank
+    def __init__(self):
+        self.tank = Tank()
         self.target = Target()
         self.menu = {
             1: self.tank.move_up,
             2: self.tank.move_down,
-            3: self.tank.move_left,
-            4: self.tank.move_right,
+            3: self.tank.move_right,
+            4: self.tank.move_left,
             5: self.tank.shoot,
-            6: print(info(self.tank)),
-            7: print(f'Game Over\n{end_game_info(self.tank)}')
         }
 
     def run(self):
         while self.tank.points > 0:
             draw_map(self.tank, self.target, 9)
-            print(f'Facing: {self.tank.direction}, Targe:{self.target.x, self.target.y}')
-            print('Menu:\n1.Move/Turn North | 2.Move/Turn South | 3.Move/Turn East\n'
-                  '4.Move/Turn west | 5. Shoot | 6. Info\n7. Exit')
+            print(f'Facing: {self.tank.direction}, Target:{self.target.x, self.target.y}')
+            print('Menu:\n1.Up | 2.Down | 3.Right | 4.Left |'
+                  '\n 5. Shoot | 6. Info | 7. Top 5 | 8. Exit')
             try:
                 choice = int(input('Enter choice: '))
             except ValueError:
@@ -33,9 +32,15 @@ class TankGame:
             if choice == 5:
                 if check_if_hit(self.tank, self.target):
                     self.target.generate_new_location()
-            action()
-            if choice == 7:
+            elif choice == 6:
+                info(self.tank)
+            elif choice == 7:
+                print(top())
+            elif choice == 8:
+                save_score(self.tank)
                 break
-            print('\n'*5)
+            else:
+                action()
         else:
-            print(f'Game over\n{end_game_info(self.tank)}')
+            print(f'Game over\nShots fired: {self.tank.shots}, Score: {self.tank.points}')
+            save_score(self.tank)

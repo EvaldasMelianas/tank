@@ -1,10 +1,20 @@
+import time
+
+
 def info(tank):
-           f'Points:{tank.points}, '\
-           f'Shots in directions:{[(key, value) for key, value in tank.shots.items()]}'
-
-def end_game_info(tank):
-    return f'Points:{tank.points}, Shots fired:{sum(tank.shots.values())}'
+    print('\n'*3)
+    print(f"Points:{tank.points}, Shots in directions:{[(key, value) for key, value in tank.shots.items()]}")
+    time.sleep(2)
 
 
-    #with open('scores.txt', 'w') as file:
-        #file.write(f'{tank.player_name}, {tank.points}')
+def save_score(tank):
+    with open('scores.txt', 'a+') as file:
+        file.write(f'{input(str("Please provide name: "))}, {tank.points}\n')
+        file.close()
+
+
+def top():
+    with open('scores.txt', 'r') as file:
+        scores = [line.strip().split(', ') for line in file]
+        sorted_scores = enumerate(sorted(scores, key=lambda x: int(x[1]), reverse=True), 1)
+        return '\n'.join([str(score) for score in sorted_scores][:5])

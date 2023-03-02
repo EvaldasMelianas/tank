@@ -2,9 +2,7 @@
 class Tank:
 
     def __init__(self):
-        self.x = 5
-        self.y = 5
-        self.direction = 'N'
+        self.x, self.y, self.direction = 5, 5, 'N'
         self.shots = {'N': 0, 'E': 0, 'S': 0, 'W': 0}
         self.points = 100
 
@@ -38,7 +36,7 @@ class Tank:
     def move_left(self):
         self.points -= 5
         if self.direction == 'W':
-            self.x -= 1
+            self.x += 1
             self.check_x()
         else:
             self.direction = 'W'
@@ -46,7 +44,7 @@ class Tank:
     def move_right(self):
         self.points -= 5
         if self.direction == 'E':
-            self.x += 1
+            self.x -= 1
             self.check_y()
         self.direction = 'E'
 
