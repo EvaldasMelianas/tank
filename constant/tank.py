@@ -30,23 +30,21 @@ class Tank:
         if self.direction == 'DOWN':
             self.y -= 1
             self.check_y()
-        else:
-            self.direction = 'DOWN'
+        self.direction = 'DOWN'
 
     def move_left(self):
         self.points -= 5
-        if self.direction == 'RIGHT':
+        if self.direction == 'LEFT':
             self.x += 1
             self.check_x()
-        else:
-            self.direction = 'RIGHT'
+        self.direction = 'LEFT'
 
     def move_right(self):
         self.points -= 5
         if self.direction == 'RIGHT':
             self.x -= 1
-            self.check_y()
-        self.direction = 'LEFT'
+            self.check_x()
+        self.direction = 'RIGHT'
 
     def shoot(self):
         self.shots[self.direction] += 1
