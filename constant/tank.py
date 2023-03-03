@@ -5,6 +5,7 @@ class Tank:
         self.x, self.y, self.direction = 5, 5, 'UP'
         self.shots = {'UP': 0, 'RIGHT': 0, 'DOWN': 0, 'LEFT': 0}
         self.points = 100
+        self.shot_distance = 2
 
     def check_x(self):
         if self.x > 9:

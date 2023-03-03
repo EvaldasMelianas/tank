@@ -1,5 +1,5 @@
 def info(tank):
-    return '\n'*3, f"Points:{tank.points}, Shots in directions:{[(key, value) for key, value in tank.shots.items()]}"
+    return f"\n\nPoints:{tank.points}, Shots in directions:{[(key, value) for key, value in tank.shots.items()]}"
 
 
 def save_score(tank):

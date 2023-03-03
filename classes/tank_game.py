@@ -1,5 +1,5 @@
 from functions.info import info, save_score, top
-from functions.visual import draw_map
+from functions.map import draw_map
 from constant.objective import Target, check_if_hit
 from constant.tank import Tank
 
@@ -32,15 +32,15 @@ class TankGame:
                 print('Choose from the menu')
                 continue
             action = self.menu.get(choice)
-            action()
             if action is None:
                 print('Choose from the menu')
                 continue
             elif choice == 5:
-                if check_if_hit(self.tank, self.target):
+                if check_if_hit(self.tank, self.target, self.tank.shot_distance):
                     self.target.generate_new_location()
             elif choice == 8:
                 break
+            action()
         else:
             print(f'Game over\nShots fired: {self.tank.shots}, Score: {self.tank.points}')
             save_score(self.tank)
