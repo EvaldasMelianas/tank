@@ -15,6 +15,9 @@ class TankGame:
             3: self.tank.move_right,
             4: self.tank.move_left,
             5: self.tank.shoot,
+            6: lambda: print(info(self.tank)),
+            7: lambda: print(top()),
+            8: lambda: save_score(self.tank)
         }
 
     def run(self):
@@ -29,18 +32,15 @@ class TankGame:
                 print('Choose from the menu')
                 continue
             action = self.menu.get(choice)
-            if choice == 5:
+            action()
+            if action is None:
+                print('Choose from the menu')
+                continue
+            elif choice == 5:
                 if check_if_hit(self.tank, self.target):
                     self.target.generate_new_location()
-            elif choice == 6:
-                info(self.tank)
-            elif choice == 7:
-                print(top())
             elif choice == 8:
-                save_score(self.tank)
                 break
-            else:
-                action()
         else:
             print(f'Game over\nShots fired: {self.tank.shots}, Score: {self.tank.points}')
             save_score(self.tank)
